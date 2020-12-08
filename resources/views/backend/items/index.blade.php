@@ -42,11 +42,15 @@
                     <td><img src="{{$row->photo}}" width="100"></td>
                     <td>{{$row->price}}</td>
                     <td>{{$row->discount}}</td>
-                    <td>{{$row->bname}}</td>
-                    <td>{{$row->sname}}</td>
+                    <td>{{$row->brand->name }}</td>
+                    <td>{{$row->subcategory->name}}</td>
                     <td>
-                      <a href="#" class="btn btn-warning">Edit</a>
-                      <a href="#" class="btn btn-danger">Delete</a>
+                      <a href="{{route('items.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                      <form method="post" action="{{route('items.destroy',$row->id)}}" onsubmit="return confirm('Are you sure?')">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" name="btn-delete" class="btn btn-danger" value="Delete">
+                      </form>
                     </td>
                   </tr>
                   @endforeach

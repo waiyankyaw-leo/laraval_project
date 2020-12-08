@@ -10,4 +10,8 @@ class Brand extends Model
    	'name','photo',
    ];
    use SoftDeletes;
+    public function items() 
+    {
+        return $this->hasMany('App\Item');
+    }
 }

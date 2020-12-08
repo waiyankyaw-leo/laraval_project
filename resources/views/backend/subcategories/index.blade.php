@@ -33,10 +33,14 @@
                   <tr>
                     <th scope="row">{{$i++}}</th>
                     <td>{{$row->name}}</td>
-                    <td>{{$row->catname }}</td>
+                    <td>{{$row->category->name }}</td>
                     <td>
-                      <a href="#" class="btn btn-warning">Edit</a>
-                      <a href="#" class="btn btn-danger">Delete</a>
+                      <a href="{{route('subcategories.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                      <form method="post" action="{{route('subcategories.destroy',$row->id)}}" onsubmit="return confirm('Are you sure?')">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" name="btn-delete" class="btn btn-danger" value="Delete">
+                      </form>
                     </td>
                   </tr>
                   @endforeach

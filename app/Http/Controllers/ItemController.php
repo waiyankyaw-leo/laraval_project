@@ -17,12 +17,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-       $items = DB::table('items')
-            ->join('brands', 'brands.id', '=', 'items.brand_id')
-            ->join('subcategories', 'subcategories.id', '=', 'items.subcategory_id')
-            ->select('items.*', 'brands.name as bname','subcategories.name as sname')
-            ->get();
-        return view('backend.items.index',['items' => $items]);
+        $items = Item::orderBy('id','desc')->get();
+        return view('backend.items.index',compact('items'));
     }
 
     /**
@@ -96,7 +92,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('backend.items.edit');
+        $subcategories = Subcategory::all();
+        $brands = Brand::all();
+        return view('backend.items.edit',compact('item'),['brands' => $brands,'subcategories' => $subcategories]);
     }
 
     /**
@@ -108,7 +106,40 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+
+
+         $request->validate([
+            "name" => "required|min:3",
+            "photo" => "sometimes|mimes:jpg,jpeg,bmp,png",
+            "oldphoto" => "required"
+        ]);
+
+        // upload
+        if($request->file()) {
+            // 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // categoryimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('brandimg', $fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+        }else{
+            $path = $request->oldphoto;
+        }
+
+        // update
+        $item->name = $request->name;
+        $item->photo = $path;
+        $item->codeno = $request->code;
+        $item->price = $request->price;
+        $item->discount = $request->discount;
+        $item->description = $request->description;
+        $item->brand_id = $request->brandid;
+        $item->subcategory_id = $request->subcategoryid;
+        $item->save();
+
+        // return
+        return redirect()->route('items.index');
     }
 
     /**
