@@ -56,7 +56,7 @@
               <div class="form-group row">
                             <label for="name_id" class="col-sm-2 col-form-label"> Item Code </label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="name_id" name="code" value="{{$item->codeno}}">
+                              <input type="text" class="form-control" id="name_id" name="code" value="{{$item->codeno}}" readonly="">
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@
                          <div class="form-group row">
                             <label for="address" class="col-sm-2 col-form-label"> Description </label>
                               <div class="col-sm-10">
-                                <textarea class="form-control" rows="3" name="description" >{{$item->description}}</textarea>
+                                <textarea class="form-control summernote" rows="3" name="description" >{{$item->description}}</textarea>
                               </div>
                           </div>
 

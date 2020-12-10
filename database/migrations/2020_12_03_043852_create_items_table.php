@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('codeno');
             $table->string('name');
-            $table->text('photo');
+            $table->string('photo');
             $table->integer('price');
             $table->integer('discount')->nullable();
             $table->text('description');

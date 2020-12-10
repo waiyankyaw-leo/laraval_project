@@ -41,26 +41,37 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "name" => "required|min:3",
-            "photo" => "required|mimes:jpg,jpeg,bmp,png"
-        ]);
+        // dd($request);
+        // $request->validate([
+        //     "name" => "required|min:3",
+        //     "photo" => "required|mimes:jpg,jpeg,bmp,png"
+        // ]);
 
         // upload
         if($request->file()) {
+            $images = [];
+            foreach ($request->photos as $photo) {
+                
             // 624872374523_a.jpg
-            $fileName = time().'_'.$request->photo->getClientOriginalName();
+            $fileName = time().'_'.$photo->getClientOriginalName();
 
             // categoryimg/624872374523_a.jpg
-            $filePath = $request->file('photo')->storeAs('itemimg', $fileName, 'public');
+            $filePath = $photo->storeAs('itemimg', $fileName, 'public');
 
             $path = '/storage/'.$filePath;
+
+            array_push($images, $path);
+            }
+
+            $json_image=json_encode($images,JSON_PRETTY_PRINT);
+
+            // var_dump($json_image);
         }
 
         // store
         $item = new Item;
         $item->name = $request->name;
-        $item->photo = $path;
+        $item->photo = $json_image;
         $item->codeno = $request->code;
         $item->price = $request->price;
         $item->discount = $request->discount;
@@ -81,7 +92,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('backend.items.show');
+        return view('backend.items.show',compact('item'));
     }
 
     /**
@@ -150,6 +161,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+       $item->delete();
+       return redirect()->route('items.index');
     }
 }

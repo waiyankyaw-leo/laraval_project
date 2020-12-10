@@ -20,21 +20,22 @@
               @csrf
               <div class="form-group row">
                 <label for="exampleInputName" class="col-sm-2 col-form-label">Item Name:</label>
-                <div class="col-sm-10">
+                <div class="col-sm-10 ">
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="exampleInputName" >
                 @error('name')
                   <div class="alert text-danger">{{ $message }}</div>
                 @enderror
               </div>
               </div>
-              <div class="form-group row">
-                <label for="exampleInputPhoto" class="col-sm-2 col-form-label">Photo:</label>
-                <div class="col-sm-10">
-                <input type="file" class="form-control-file @error('photo') is-invalid @enderror" name="photo" id="exampleInputPhoto">
-                @error('photo')
-                  <div class="alert text-danger">{{ $message }}</div>
-
-                @enderror
+              <div class=" row form-group ">
+                <label for="exampleInputPhoto" class="col-sm-2 col-form-label ">Photo:</label>
+                <div class="col-sm-10 ">
+                <div class="input-group hdtuto control-group lst increment " >
+                  <input type="file" name="photos[]" class="myfrm form-control">
+                  <div class="input-group-btn"> 
+                    <button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>               
               </div>
               </div>
               <div class="form-group row">
@@ -66,9 +67,9 @@
                          </div>
 
                          <div class="form-group row">
-                            <label for="address" class="col-sm-2 col-form-label"> Description </label>
+                            <label for="address InputDesc " class="col-sm-2 col-form-label"> Description </label>
                               <div class="col-sm-10">
-                                <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+                                <textarea class="form-control summernote" rows="3" name="description" id="InputDesc" ></textarea>
                               </div>
                           </div>
 
@@ -96,6 +97,7 @@
                               </div>
                           </div>
 
+              
                        
               
               <button type="submit" class="btn btn-primary">Save</button>
@@ -106,3 +108,4 @@
     </div>
   </main>
 @endsection
+

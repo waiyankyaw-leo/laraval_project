@@ -20,7 +20,13 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets/css/main.css')}}">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_assets/vendor/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets/css/custom.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+    
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -139,15 +145,44 @@
     
     @yield('content')
     <!-- Essential javascripts for application to work-->
+
     <script src="{{ asset('backend_assets/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('backend_assets/js/custom.js')}}"></script>
     <script src="{{ asset('backend_assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('backend_assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('backend_assets/js/main.js')}}"></script>
+
     <!-- The javascript plugin to display page loading on top-->
-    <script src="{{ asset('backend/js/plugins/pace.min.js')}}"></script>
+    <script src="{{ asset('backend_assets/js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('backend_assets/js/plugins/chart.js')}}"></script>
-    <script type="text/javascript">
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    
+    <script type="text/javascript">     
+    $(document).ready(function() {
+         
+      $(".btn-success").click(function(){ 
+          var lsthmtl = `
+                  <div class="hdtuto control-group lst input-group clone" >
+                    <input type="file" name="photos[]" class="myfrm form-control">
+                    <div class="input-group-btn"> 
+                      <button class="btn btn-danger" type="button"> <i class="fas fa-minus"></i></button>
+                    </div>
+                  </div>
+                `
+          $(".increment").before(lsthmtl);
+      });
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+
+          
+    });
+
+
       var data = {
       	labels: ["January", "February", "March", "April", "May"],
       	datasets: [
@@ -205,6 +240,14 @@
       	ga('send', 'pageview');
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script>
+      $('.summernote').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 100
+      });
+  </script>
     @yield('script')
   </body>
 </html>

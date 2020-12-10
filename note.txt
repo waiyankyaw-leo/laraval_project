@@ -1,0 +1,118 @@
+MVC
+---
+  - Model
+  - View (presentation layer - blade)
+  - Controller (main control - class)
+
+- Show all artisan commands (php artisan list)
+
+Routes
+  - web.php
+  - ပြချင်တဲ့ page တစ်ခုခြင်းစီအတွက် Route တစ်ခုစီရေးရမယ်
+  - ရေးထားသော Route တွေကိုပြန်ကြည့်မယ် (php artisan route:list)
+  - (uri, name, action)
+
+Controllers
+  - app/Http/Controllers
+  - create new controller class (php artsian make:controller MainController)
+  - can create methods
+
+To Read
+-------
+  - MVC
+  - Balde Template Engine (Docs/Frontends/Balde Templates)
+
+Ecommerce Project
+-----------------
+  - Item Manage - 1
+  - User Manage - 2
+  - Order Manage - 3
+
+  - User Roles
+    - customer
+      - register / login
+      - order
+
+    - admin
+      - item crud
+      - order rud
+
+  - DB Structure
+    - items (1, pen, 5000, uni, equipment, color, description) - 4
+      - brands - 3
+      - categories - 1
+      - subcategories - 2
+    - users
+    - orders
+
+Terminal Commands
+-----------------
+  - php artisan make:model Category -m (model + migration)
+  - php artisan make:model Item -m -r (model + migration + resource controller[m-7])
+  - php artisan make:controller BrandController --resource --model=Brand (resource controller related model)
+  - php artisan migrate:fresh (drop all tables and migrate again)
+
+  - CRUD
+    - Create -2 (form, save)
+    - Retrieve -1 (display all list)
+      - Detail -1 (display only one)
+    - Update -2 (form, edit)
+    - Delete -1 (delete)
+
+  - Upload File
+    - php artisan storage:link
+
+Clone Laravel Project From Git
+------------------------------
+- git clone url
+- cd folder
+- copy .env.example .env
+- composer install
+- php artisan key:generate
+
+8 Dec 2020
+----------
+  - In item index
+    - codeno, name, price(discount) use number format, buttons (detail, edit, delete) 
+  - item show blade ui
+  - In item edit form
+      - select option -> auto selected
+      - item code readonly
+  - Summernote in description (create, edit)
+  - Multi File Upload
+
+Auth
+----
+  - composer require laravel/ui:^2.4
+  - php artisan ui bootstrap --auth
+  - node js install
+  - npm install
+  - npm run dev
+  - read docs
+
+Frontend UI (html)
+-----------
+  - home (item တွေပြဖို့)
+  - cart 
+  - item detail page
+  - profile
+  - order history
+
+
+Guest
+-----
+http://localhost:8000/
+
+Auth and Customer
+http://localhost:8000/checkout
+
+Auth and Admin
+http://localhost:8000/dashboard
+
+
+10 Dec 2020
+-----------
+  - Role for Auth
+  - middleware
+  - frontend ui with dynamic data
+  - 

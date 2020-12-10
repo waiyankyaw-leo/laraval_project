@@ -26,7 +26,7 @@
                     <th scope="col">Codeno</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Discount</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Subcategory</th>
                     <th scope="col">Actions</th>
@@ -39,9 +39,19 @@
                     <th scope="row">{{$i++}}</th>
                     <td>{{$row->name}}</td>
                     <td>{{$row->codeno}}</td>
-                    <td><img src="{{$row->photo}}" width="100"></td>
-                    <td>{{$row->price}}</td>
-                    <td>{{$row->discount}}</td>
+
+                    @php $photo=json_decode($row->photo,TRUE) 
+                    @endphp
+                    
+                    <td><img src="{{ $photo[0] }}" width="100"></td>
+                    
+                    @if($row->discount > 0)
+                    <td>{{number_format($row->price - $row->discount)}}<br>
+                      <strike>{{number_format($row->price)}}</strike></td>
+                    @else
+                    <td>{{number_format($row->price)}}</td>
+                    @endif
+                    <td>{!!$row->description!!}</td>
                     <td>{{$row->brand->name }}</td>
                     <td>{{$row->subcategory->name}}</td>
                     <td>
@@ -51,6 +61,7 @@
                         @method('DELETE')
                         <input type="submit" name="btn-delete" class="btn btn-danger" value="Delete">
                       </form>
+                      <a href="{{route('items.show',$row->id)}}" class="btn btn-warning">Details</a>
                     </td>
                   </tr>
                   @endforeach
