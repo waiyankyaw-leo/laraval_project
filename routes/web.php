@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'FrontendController@home')->name('home');
+Route::get('detail/{id}', 'FrontendController@detail')->name('detail');
 Route::get('about','FrontendController@about')->name('about');
 Route::get('contact','FrontendController@contact')->name('contact');
-Route::get('post','FrontendController@post')->name('post');
+Route::get('cart','FrontendController@cart')->name('cart');
+Route::get('success','FrontendController@success')->name('success');
+Route::get('history','FrontendController@history')->name('history');
+Route::get('orderdetail/{id}','FrontendController@orderdetail')->name('orderdetail');
+
 
 Route::middleware('role:admin')->group(function () {
 //Backend
@@ -28,7 +33,10 @@ Route::resource('brands','BrandController');
 Route::resource('items','ItemController');
 Route::resource('categories','CategoryController');
 Route::resource('subcategories','SubcategoryController');
+Route::resource('orders', 'OrderController');
 });
 Auth::routes(['verify'=>true ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('orders','OrderController');
+Route::get('confirm/{id}','OrderController@confirm')->name('orders.confirm');
+// Route::get('/home', 'HomeController@index')->name('home');
