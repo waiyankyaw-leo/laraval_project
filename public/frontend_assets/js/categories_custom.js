@@ -53,7 +53,7 @@ jQuery(document).ready(function($)
 	initFavorite();
 	initFixProductBorder();
 	initIsotopeFiltering();
-	initPriceSlider();
+	// initPriceSlider();
 	initCheckboxes();
 
 	/* 
@@ -367,8 +367,8 @@ jQuery(document).ready(function($)
 		            	var priceRange = $('#amount').val();
 			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
 			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('$', ''));
-			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( '$', '' );
-
+			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( 'MMK', '' );
+			        	
 			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
 		            },
 		            animationOptions: {

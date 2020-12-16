@@ -63,4 +63,18 @@ class FrontendController extends Controller
         $orders=Order::find($id);
         return view('frontend.orderdetail',compact('orders'));
     }
+
+     public function allitem($value='')
+    {
+        
+        $items=Item::orderBy('created_at','desc')->limit(12)->get();
+        return view('frontend.allitem',compact('items'));
+    }
+
+     public function itemcategory($id)
+    {
+        
+        $category=Category::find($id);
+        return view('frontend.itemcategory',compact('category'));
+    }
 }

@@ -83,7 +83,7 @@ $(document).ready(function(){
 			})
 
 			$('.cartNoti').html(notiCount);
-			$('.cartAmount').html(totalAmount+' Ks');
+			$('.cartAmount').html(new Intl.NumberFormat().format(totalAmount)+' Ks');
 
 		}
 
@@ -115,7 +115,7 @@ $(document).ready(function(){
 				          <h6 class="ml-3">Item Code: ${v.codeno}</h6>
 				       </div>
 				      </td>
-				      <td style="font-size: 16px;" class="text-danger align-middle">${v.price-v.discount}</td>
+				      <td style="font-size: 16px;" class="text-danger align-middle">${new Intl.NumberFormat().format(v.price-v.discount)}</td>
 				      <td class="align-middle">
 				        <div class="d-inline">
 				        <button class="btn btn-light rounded-circle" data-id="${i}" id="btnincrease">
@@ -128,7 +128,7 @@ $(document).ready(function(){
 				      </div>
 				      </td>
 				      <td style="font-size: 16px;" class="text-danger align-middle">
-				        ${(v.price-v.discount)*v.qty}
+				        ${new Intl.NumberFormat().format((v.price-v.discount)*v.qty)}
 				      </td>
 				      <td class="align-middle">
 				        <button class="btn btn-light rounded-circle" data-id="${i}" id="delete" ><i class="fas fa-times"></i></button>
@@ -214,7 +214,7 @@ $(document).ready(function(){
       		total += (v.price-v.discount)*v.qty;	
       		})
       		
-      		var tmp=`${total} MMK`;
+      		var tmp=`${new Intl.NumberFormat().format(total)} MMK`;
       		$('.subtotal').html(tmp);
       		$('.total').html(tmp);
       	}

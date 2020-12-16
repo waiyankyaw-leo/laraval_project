@@ -38,7 +38,16 @@
             <nav class="navbar">
               <ul class="navbar_menu d-none d-md-block">
                 <li><a href="{{route('home')}}">home</a></li>
-                <li><a href="#">shop</a></li>
+                <li class="dropdown">
+
+
+                  <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">Category</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <x-category-component></x-category-component>
+                </div>
+
+                </li>
+                <li><a href="{{route('category')}}">Shop</a></li>
                 <li><a href="contact.html">contact</a></li>
                  @guest
                             <li class="nav-item">
@@ -205,6 +214,8 @@
       </div>
     </div>
   </footer>
+
+  
 
 </div>
 

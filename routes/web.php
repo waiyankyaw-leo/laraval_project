@@ -23,7 +23,9 @@ Route::get('cart','FrontendController@cart')->name('cart');
 Route::get('success','FrontendController@success')->name('success');
 Route::get('history','FrontendController@history')->name('history');
 Route::get('orderdetail/{id}','FrontendController@orderdetail')->name('orderdetail');
-
+// Route::get('category','FrontendController@category')->name('category');
+Route::get('category','FrontendController@allitem')->name('category');
+Route::get('itemcategory/{id}','FrontendController@itemcategory')->name('itemcategory');
 
 Route::middleware('role:admin')->group(function () {
 //Backend

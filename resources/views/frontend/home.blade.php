@@ -30,7 +30,7 @@
         <div class="col-md-4 px-3 my-3">
           <div class="banner_item align-items-center border" style="background-image:url({{$category->photo}})" >
             <div class="banner_category">
-              <a href="categories.html">{{$category->name}}</a>
+              <a href="{{route('itemcategory',$category->id)}}">{{$category->name}}</a>
             </div>
           </div>
         </div>

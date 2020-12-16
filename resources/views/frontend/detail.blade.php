@@ -107,7 +107,8 @@
 			@endphp
 			<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
 				<a href="{{route('detail',$related_item->id)}}" class="text-decoration-none text-dark">
-					<img src="{{$photo[0]}}" class="img-fluid">
+					<img src="{{$photo[0]}}" class="img-fluid mx-3">
+					<span class="text-center d-block">{{ $related_item->name}}</span>
 				</a>
 			</div>
 			@endif
